@@ -17,20 +17,11 @@ from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import OllamaEmbeddings
 import requests
 
-app = Flask(__name__)
-CORS(app)
 
 # --- Models pulled via `ollama pull ...`
 LLM_MODEL = "llama3.2"            # generation model
 EMBED_MODEL = "nomic-embed-text"
 
-# Initialize Ollama chat model
-llm = ChatOllama(model=LLM_MODEL, temperature=0.2)
-
-# Initialize Ollama embeddings model
-embeddings = OllamaEmbeddings(model=EMBED_MODEL)
-
-print("Ollama models configured:", LLM_MODEL, "|", EMBED_MODEL)
 
 ## CRAWL AIREADI DOCS
 START_URL = "https://docs.aireadi.org/"
@@ -159,54 +150,75 @@ splitter_large = RecursiveCharacterTextSplitter(
 chunks_large = splitter_large.split_documents(docs)
 print(f"Large chunks: {len(chunks_large)}")
 
-#  Build two FAISS indexes
-vectorstore_small = FAISS.from_documents(chunks_small, embeddings)
-vectorstore_small.save_local("faiss_index_small")
-print("Small index saved")
 
-vectorstore_large = FAISS.from_documents(chunks_large, embeddings)
-vectorstore_large.save_local("faiss_index_large")
-print("Large index saved")
+def make_retriever(vs):
+    return vs.as_retriever(
+        search_type="mmr",
+        search_kwargs={"k": 8}
+    )
 
+def answer_with_rag(question: str, app) -> str:
+    def invoke(retriever):
+        retrieved = retriever.invoke(question)
 
-def answer_with_rag(question: str) -> str:
-    def get_answer(vs, q, k=5):
-        retrieved = vs.as_retriever(
-            search_type="mmr",
-            search_kwargs={"k": 8}
-        ).invoke(q)
         context = "\n\n---\n\n".join(
             f"[Source: {d.metadata.get('source_file', '?')}]\n{d.page_content}"
             for d in retrieved
         )
         prompt = f"""You are answering questions about the AI-READI dataset using documentation.
-        Read the context carefully and answer the question. When you find something, only answer the direct answer, do not say "According to the documentation,"
-        If you are not confident the context contains the correct answer, say: "Not found in the provided pages."
+            Read the context carefully and answer the question. When you find something, only answer the direct answer, do not say "According to the documentation,"
+            If you are not confident the context contains the correct answer, say: "Not found in the provided pages."
 
-        Documentation context:
-        {context}
+            Documentation context:
+            {context}
 
-        Question:
-        {q}
+            Question:
+            {question}
 
-        Answer:
-    """
-        return llm.invoke(prompt).content
+            Answer:
+        """
+        return app.llm.invoke(prompt).content
 
-    answer = get_answer(vectorstore_small, question)
-
+    answer = invoke(app.vectorstore_small)
     if "not found" in answer.lower():
-        answer = get_answer(vectorstore_large, question)
-
+        answer = invoke(app.vectorstore_large)
     return answer
 
 
-@app.route("/chat", methods=["POST"])
-def chat():
-    question = request.json["question"]
-    answer = answer_with_rag(question)
-    return jsonify({"answer": answer})
+def register_routes(app):
+
+    @app.route("/chat", methods=["POST"])
+    def chat():
+        question = request.json["question"]
+        answer = answer_with_rag(question, app)
+        return jsonify({"answer": answer})
 
 
-if __name__ == "__main__":
-    app.run(port=8000)
+
+def create_app():
+    app = Flask(__name__)
+
+    CORS(app)
+
+    # --- Models (app context içine koy)
+    app.llm = ChatOllama(model=LLM_MODEL, temperature=0.2)
+    app.embeddings = OllamaEmbeddings(model=EMBED_MODEL)
+
+    #  Build two FAISS indexes
+    app.vectorstore_small = FAISS.from_documents(chunks_small, app.embeddings)
+    app.vectorstore_small.save_local("faiss_index_small")
+    print("Small index saved")
+
+    vectorstore_large = FAISS.from_documents(chunks_large, app.embeddings)
+    vectorstore_large.save_local("faiss_index_large")
+    print("Large index saved")
+
+    app.retriever_small = make_retriever(app.vectorstore_small)
+    app.retriever_large = make_retriever(app.vectorstore_large)
+
+    print("Ollama models configured:", LLM_MODEL, "|", EMBED_MODEL)
+
+    # --- routes
+    register_routes(app)
+
+    return app
