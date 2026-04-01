@@ -1,0 +1,16 @@
+URL: http://docs.aireadi.org/docs/3/controlled-variables
+
+Controlled Variables | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+The following variables are not in the published dataset and require Data Access Committee approval and a Data Use Agreement before they can be accessed:
+5-digit zip code
+Medications
+Race/ethnicity
+Sex
+Planned for future release:
+Past health records
+Genetic information
+Bio-repository samples are available for research upon request and appropriate funding. This will also require a Data Use Agreement and Material Transfer Agreement. To request access to controlled variables or bio-repository samples, please send an email to
+aireadi-dac@ohsu.edu
+.

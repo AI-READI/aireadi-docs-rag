@@ -1,0 +1,38 @@
+URL: https://docs.aireadi.org/docs/3/preliminary/azure_storage/azure-token
+
+Azure Container SAS Token Generation | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+On this page
+Generate a SAS Token
+ 
+Now that we have a Storage Account and a Blob Container, create a Shared Access Signature (SAS) token. This token will allow the AI-READI pipeline to write files to your container. See the
+Microsoft documentation
+for more details.
+From the container, expand the "Settings" menu item and select "Shared access tokens".
+Access container settings
+Set the following options:
+Permissions
+: Check only the box for "Write".
+Set the token permissions
+Expiry
+: Choose a date several weeks or months in the future (e.g., 2 to 3 weeks).
+Set the token exipration date
+Click "
+Generate SAS token and URL
+".
+Copy only the "Blob SAS token". It will be in the following format:
+sp=w&st=2025-06-02T23:28:30Z&se=2025-07-04T07:28:30Z&spr=https&sv=2024-11-04&sr=c sig=KBj2FOV...
+info
+Only submit the SAS token (do not include the full SAS URL which starts with
+https
+).
+Final Checklist
+ 
+Make sure you have all three of the following:
+Storage Account Name
+Blob Container Name
+Blob SAS Token (Write permission)
+Provide this information while requesting access to the AI-READI dataset during the Azure credentials step.
+Generate a SAS Token
+Final Checklist

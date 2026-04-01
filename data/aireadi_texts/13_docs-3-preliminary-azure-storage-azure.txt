@@ -1,0 +1,10 @@
+URL: https://docs.aireadi.org/docs/3/preliminary/azure_storage/azure
+
+Azure Storage Overview | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+Due to the size of the AI-READI dataset, we require requestors to provide an Azure storage container to receive the processed data. Specifically, at the end of the request process you will need to provide:
+Storage Account Name
+Blob Container Name
+Blob SAS Token (with "Write" permission only)
+Follow the steps over the next few pages to create your Azure storage environment. Please do this before you attempt to request the AI-READI dataset as it can lead to delays in processing your request.

@@ -1,0 +1,41 @@
+URL: https://docs.aireadi.org/docs/3/preliminary/azure_storage/azure-storage
+
+Azure Storage Account Creation | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+On this page
+Create an Azure Storage Account
+ 
+Next, create an
+Azure Storage Account
+that will house the storage container. Below is a summarized version of the
+full documentation
+. If you already have an Azure Storage Account you can
+skip to creating the container
+.
+Log in to the Azure Portal:
+https://portal.azure.com
+Search for "Storage accounts" in the top search bar and click "+ Create".
+Locate the Storage account item from the menu in the upper left
+Fill out the form:
+Subscription
+: Select your plan.
+Resource group
+: Use an existing one or create a new one.
+Storage account name
+: Choose a globally unique, lowercase name.
+Region
+: Choose a region closest to you.
+Performance
+: Standard (default).
+Redundancy
+: Locally-redundant storage (LRS) is recommended.
+Form elements to complete
+Click "Review + create", then "Create".
+Note
+: Take note of your Storage Account Name. You ll need this when requesting the dataset.
+Review the details
+Overview while the storage account is created
+Once complete you can go to the storage account
+Storage account home page
+Create an Azure Storage Account

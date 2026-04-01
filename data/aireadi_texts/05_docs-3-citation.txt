@@ -1,0 +1,14 @@
+URL: https://docs.aireadi.org/docs/3/citation
+
+Citation | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+As per the
+license terms
+, if you use the AI-READI dataset or any subset of it, you must cite the following references:
+AI-READI Consortium. (2024). "AI-READI: rethinking data collection, preparation and
+sharing for propelling AI-based discoveries in diabetes research and beyond."
+Nature metabolism. https://doi.org/10.1038/s42255-024-01165-x
+AI-READI Consortium. (2025). Flagship Dataset of Type 2 Diabetes from the
+AI-READI Project (3.0.0) [Data set]. FAIRhub.
+https://doi.org/10.60775/fairhub.3

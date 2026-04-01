@@ -1,0 +1,13 @@
+URL: https://docs.aireadi.org/docs/3/preliminary/mini-dataset
+
+Mini dataset | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+On this page
+Mini version of the dataset
+ 
+Since the AI-READI dataset is now quite large, we have created a mini version on popular demand that users can download first to explore the dataset and set up their pipelines.
+This subset dataset contains data from 100 participants and is 179.68 GB in size. You can access the mini dataset and learn more about it
+here
+.
+Mini version of the dataset

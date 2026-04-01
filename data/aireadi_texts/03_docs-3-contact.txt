@@ -1,0 +1,14 @@
+URL: https://docs.aireadi.org/docs/3/contact
+
+Contact Us | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+Want to provide feedback about our dataset? Have a question about our project? Need help using our data? Let us know!
+tip
+Please read our
+FAQ
+first! Your question may already be answered there.
+info
+We are mostly looking for feedback at this moment but will try our best to answer
+questions. Please use an institutional email for faster response and preventing your query from
+being flagged as a spam.

@@ -1,0 +1,137 @@
+URL: https://docs.aireadi.org/docs/3/dataset/data-domain
+
+Data Domain | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0
+Domain
+Variable
+Data Capture
+Method/Devices
+Screening Survey
+Biological Sex
+REDCAP
+self-administered
+Race/ethnicity
+Diabetes Status
+Demographic Survey
+Date of Birth
+REDCAP
+self-administered
+Age
+Marital Status
+Gender Identity
+Questionnaires
+Health Survey
+REDCAP
+self-administered
+Substance Use Survey
+CESD-10 Depression Survey
+PAID-5 Problem Areas in Diabetes Survey
+Diabetes Self-Care (lifestyle) Survey
+Dietary Survey
+Social Determinants of Health Survey (combined PhenX Toolkit)
+Food Insecurity Survey (PhenX Toolkit)
+Neighborhood Environment Survey (PhenX Toolkit)
+Racial/Ethnic Discrimination Survey (PhenX Toolkit)
+Visual Impairment and Access to Eye Care
+Physical Assessment
+Last Meal (hours)
+REDCap
+CRC-administered
+Height
+Weight
+BMI
+Waist Circumferene
+Hip Circumference
+Waist to Hip Ratio
+Blood Pressure (resting)
+Heart rate
+Vision
+Autorefraction
+REDCap
+device; Topcon KR800
+BCVA photopic and mesopic
+device; EVA device (M&S Technologies)
+Mars Letter contrast sensitivity photopic
+Mars Chart (Mars Perceptrix)
+Mars Letter contrast sensitivity mesopic
+Mars Chart (Mars Perceptrix)
+Cognition
+Montreal Cognitive Assessment (MoCA)
+MoCAtest Duo App (on tablet)
+CRC-administered; Duo App
+Retinal imaging
+Fundus photo
+device, then Azure
+device: Eidon, Maestro2, Optomed
+OCT
+device, then Azure
+device: Spectralis, Cirrus, Maestro2, Triton
+OCTA
+device, then Azure
+device: Spectralis, Cirrus, Maestro2, Triton
+FLIO
+device, then Azure
+device: Heidelberg FLIO
+Cardiology
+ECG
+device, then Azure
+device; Philips Pagewriter TC30
+Peripheral neuropathy
+Monofilament test
+REDCap
+CRC-administered
+Laboratory tests (regardless of bodily system)
+NT-proBNP
+Azure/fairhub
+lab test
+Troponin-T
+C-Peptide
+Insulin
+CRP-HS
+Total Cholesterol
+Triglycerides
+HDL Cholesterol
+LDL Cholesterol (calculated field)
+Glucose
+BUN
+Creatinine
+BUN/Creatinine ratio
+Sodium
+Potassium
+Chloride
+Carbon Dioxide, Total
+Calcium
+Protein, total
+Albumin
+Globulin, total (calculated field)
+A/G Ratio (calculated field)
+Bilirubin, Total
+Alkaline Phosphatase
+AST (GOT)
+ALT (GPT)
+HbA1c
+Urine creatinine
+Urine Albumin
+CBC (with platelets, no differential)
+REDCap
+lab test
+Activity Monitoring
+Heart Rate (bpm)
+Azure/fairhub
+device; Garmin Vivosmart 5
+Sleep data (hrs)
+Oxygen saturation (pulse ox)
+Environmental sensor
+Humidity
+Azure/fairhub
+UW (Inventor)
+Light levels
+Particulate matter 1, 2.5, 4, and 10
+VOCs
+Temperature
+NOx
+Continuous Glucose Monitoring
+blood glucose levels
+Azure/fairhub
+Dexcom G6

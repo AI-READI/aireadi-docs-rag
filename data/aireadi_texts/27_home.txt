@@ -1,0 +1,16 @@
+URL: http://docs.aireadi.org
+
+Documentation for the AI-READI Dataset
+Skip to main content
+Generating Data to Boost Future AI-driven Research in Type 2 Diabetes
+This is the documentation for the AI-READI dataset called "Flagship Dataset of Type 2 Diabetes from the AI-READI Project". AI-READI is one of the data generation project of the National Institutes of Health funded Bridge2AI Program. One of the major goals of AI-READI is to collect and share a multimodal, AI-ready dataset for studying salutogenesis in Type 2 Diabetes Mellitus.
+Snapshot of the AI-READI dataset
+Key numbers from the current version of the dataset (v3.0.0)
+2280
+Participants from three data collection sites
+15
+Data modalities collected
+356,343
+Total number of data files
+3.82
+TB dataset size

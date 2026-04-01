@@ -1,0 +1,5 @@
+URL: https://docs.aireadi.org/docs/3/dataset/clinical-data/OMOP-Clinical-Data-Structure/OMOP-Mapping-Table
+
+OMOP Mapping and Data Domain Table | Documentation for the AI-READI Dataset
+Skip to main content
+Version: 3.0.0

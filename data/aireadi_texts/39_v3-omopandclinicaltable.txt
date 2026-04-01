@@ -1,0 +1,3 @@
+URL: https://docs.aireadi.org/v3-omopAndClinicalTable
+
+Documentation for the AI-READI Dataset
