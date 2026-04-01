@@ -2,11 +2,12 @@ from langchain_ollama import ChatOllama, OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
-
+import config
 import re
 from collections import deque
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
+from waitress import serve
 
 from flask import Flask, request, jsonify
 from pathlib import Path
@@ -195,12 +196,14 @@ def register_routes(app):
 
 
 
-def create_app():
+def create_app(config_module=None):
     app = Flask(__name__)
 
     CORS(app)
 
-    # --- Models (app context içine koy)
+    # Initialize config
+    app.config.from_object(config_module or "config")
+
     app.llm = ChatOllama(model=LLM_MODEL, temperature=0.2)
     app.embeddings = OllamaEmbeddings(model=EMBED_MODEL)
 
@@ -222,3 +225,23 @@ def create_app():
     register_routes(app)
 
     return app
+
+if __name__ == "__main__":
+    from argparse import ArgumentParser
+
+    parser = ArgumentParser()
+    parser.add_argument(
+        "-P", "--port", default=5000, type=int, help="Port to listen on"
+    )
+    parser.add_argument("-H", "--host", default="0.0.0.0", type=str, help="Host")
+    parser.add_argument(
+        "-L", "--loglevel", default="INFO", type=str, help="Logging level"
+    )
+    args = parser.parse_args()
+    port = args.port
+    host = args.host
+    loglevel = args.loglevel
+
+    flask_app = create_app()
+
+    serve(flask_app, port=port, host=host)
