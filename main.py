@@ -153,13 +153,16 @@ print(f"Large chunks: {len(chunks_large)}")
 
 
 def make_retriever(vs):
-    return vs.as_retriever(
+    retriever = vs.as_retriever(
         search_type="mmr",
         search_kwargs={"k": 8}
     )
+    return retriever
 
 def answer_with_rag(question: str, app) -> str:
+
     def invoke(retriever):
+
         retrieved = retriever.invoke(question)
 
         context = "\n\n---\n\n".join(
@@ -180,9 +183,9 @@ def answer_with_rag(question: str, app) -> str:
         """
         return app.llm.invoke(prompt).content
 
-    answer = invoke(app.vectorstore_small)
+    answer = invoke(app.retriever_small)
     if "not found" in answer.lower():
-        answer = invoke(app.vectorstore_large)
+        answer = invoke(app.retriever_large)
     return answer
 
 
@@ -193,7 +196,6 @@ def register_routes(app):
         question = request.json["question"]
         answer = answer_with_rag(question, app)
         return jsonify({"answer": answer})
-
 
 
 def create_app(config_module=None):
@@ -212,11 +214,13 @@ def create_app(config_module=None):
     app.vectorstore_small.save_local("faiss_index_small")
     print("Small index saved")
 
-    vectorstore_large = FAISS.from_documents(chunks_large, app.embeddings)
-    vectorstore_large.save_local("faiss_index_large")
+    app.vectorstore_large = FAISS.from_documents(chunks_large, app.embeddings)
+    app.vectorstore_large.save_local("faiss_index_large")
     print("Large index saved")
 
     app.retriever_small = make_retriever(app.vectorstore_small)
+    print(type(app.retriever_small))
+
     app.retriever_large = make_retriever(app.vectorstore_large)
 
     print("Ollama models configured:", LLM_MODEL, "|", EMBED_MODEL)
@@ -240,7 +244,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     port = args.port
     host = args.host
-    loglevel = args.loglevel
 
     flask_app = create_app()
 
